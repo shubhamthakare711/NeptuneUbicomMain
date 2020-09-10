@@ -1,7 +1,8 @@
-<div class="header">
+<div class="header" *ngIf="appServiceObject.currentPageName=== pageName.PROFESSIONALSECTION">
 
   <h3 class="page-title">Professional Information</h3>
-    <button type="button" class="btn btn-primary professionalinfo-btn" data-toggle="modal" data-target="#professionalSectionModal" data-whatever="@mdo"
+  <button type="button" class="btn btn-primary back-btn" (click)="backToPage()">Back To Main Page</button>
+    <button type="button" class="btn btn-primary professionalinfo-btn" style="float : right;"  data-toggle="modal" data-target="#professionalSectionModal" data-whatever="@mdo"
     (click)="openModal()">Add Professional Information</button>
       
       <!-- The Modal -->

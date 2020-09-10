@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfessionalSectionModel } from 'src/section/model/professional-section.model';
 import * as _ from 'lodash';
-import { GENDERS , LOCALSTORAGEKEYS , MESSAGE } from '../../config/config';
+import { GENDERS , LOCALSTORAGEKEYS , MESSAGE , PAGE} from '../../config/config';
+import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-professional-section',
   templateUrl: './professional-section.component.html',
@@ -13,16 +15,21 @@ export class ProfessionalSectionComponent implements OnInit {
   isShowProfessionalModal : boolean;
   isDisableSubmitButton: boolean;
   genderArray = GENDERS;
-  constructor() {
+  pageName = PAGE;
+  constructor(public appServiceObject:AppService , public router:Router) {
     this.isShowProfessionalModal = false;
     this.isDisableSubmitButton = false;
     this.professionalInfoModel = new ProfessionalSectionModel();
     this.professionalInfoOfEmployees = new Array<ProfessionalSectionModel>();
+    this.appServiceObject.currentPageName = PAGE.PROFESSIONALSECTION;
    }
   ngOnInit(): void {
     this.readDataFromLocalStorage();
   }
-
+  backToPage() {
+    this.router.navigate(['/section']);
+     this.appServiceObject.currentPageName = PAGE.MAINPAGE;
+  }
 
   readDataFromLocalStorage() {
     let dataFromLocalStorage = JSON.parse(localStorage.getItem(LOCALSTORAGEKEYS.PROFESSIONAL));

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonalSectionModel } from 'src/section/model/personal-section.model';
-import { GENDERS , LOCALSTORAGEKEYS } from '../../config/config'
+import { GENDERS , LOCALSTORAGEKEYS, PAGE} from '../../config/config'
 import * as _ from 'lodash';
+import { AppService } from 'src/app/app.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-personal-section',
   templateUrl: './personal-section.component.html',
@@ -12,19 +14,24 @@ export class PersonalSectionComponent implements OnInit {
   isDisableSubmitButton: boolean;
   personalInfo: PersonalSectionModel;
   genderArray = GENDERS;
+  pageNames = PAGE;
   personalInfoOfEmployees : PersonalSectionModel[] = [];
-  constructor() { 
+  constructor(public appServiceObject:AppService , public router:Router) { 
     this.isShowPersonalModal= false;
     this.isDisableSubmitButton = false;
     this.personalInfo = new PersonalSectionModel();
     this.personalInfoOfEmployees = new Array<PersonalSectionModel>();
+    this.appServiceObject.currentPageName = PAGE.PERSONALSECTION;
   }
 
   ngOnInit(): void {
     this.readDataFromLocalStorage();
   }
 
-
+  backToPage() {
+    this.router.navigate(['/section']);
+     this.appServiceObject.currentPageName = 'MainPage';
+  }
   readDataFromLocalStorage() {
     let dataFromLocalStorage = JSON.parse(localStorage.getItem(LOCALSTORAGEKEYS.PERSONAL));
     this.personalInfoOfEmployees = dataFromLocalStorage !== null ? dataFromLocalStorage : [];
