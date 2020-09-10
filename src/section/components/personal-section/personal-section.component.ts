@@ -23,6 +23,9 @@ export class PersonalSectionComponent implements OnInit {
   }
 
 
+  /**
+   * method to open bootstrap modal
+   */
   openModal() {
     this.isShowPersonalModal = true;
   }
