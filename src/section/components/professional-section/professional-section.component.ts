@@ -41,7 +41,7 @@ export class ProfessionalSectionComponent implements OnInit {
   }
 
   showHideSubmitButton() {
-    if(this.professionalInfoModel.employeeId !== "" && this.professionalInfoModel.employeeName !== "" && this.professionalInfoModel.gender !== "-1" && this.professionalInfoModel.joiningDate !== null ) {
+    if(this.professionalInfoModel.employeeId.length !== 0 && this.professionalInfoModel.employeeName.length !== 0 && this.professionalInfoModel.gender !== "-1" && this.professionalInfoModel.joiningDate !== null ) {
       this.isShowSubmitButton = true;
     } else {
       this.isShowSubmitButton = false;

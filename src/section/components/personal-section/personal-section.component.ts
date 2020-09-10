@@ -36,10 +36,11 @@ export class PersonalSectionComponent implements OnInit {
 
   closeModel() {
     this.isShowPersonalModal = false;
+    this.clearFields();
   }
   
   showHideSubmitButton() {
-    if(this.personalInfo.firstName !== "" && this.personalInfo.lastName !== "" && this.personalInfo.gender !== "-1" && this.personalInfo.birthdate !== null ) {
+    if(this.personalInfo.firstName.length !== 0 && this.personalInfo.lastName.length !== 0 && this.personalInfo.gender !== "-1" && this.personalInfo.birthdate !== null ) {
       this.isShowSubmitButton = true;
     } else {
       this.isShowSubmitButton = false;

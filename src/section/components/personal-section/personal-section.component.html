@@ -1,5 +1,6 @@
 <div class="header">
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personalSectionModal" data-whatever="@mdo"
+  <h3 class="page-title">Personal Information</h3>
+<button type="button" class="btn btn-primary personalinfo-btn" data-toggle="modal" data-target="#personalSectionModal" data-whatever="@mdo"
 (click)="openModal()">Add Personal Information</button>
   
   <!-- The Modal -->
@@ -16,15 +17,15 @@
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="first-name" class="col-form-label">FirstName<span style="color:red">*</span></label>
-              <input type="text" class="form-control" id="first-name" name = "firstName" placeholder = "first name"  (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.firstName">
+              <label for="first-name" class="col-form-label">First Name<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="first-name" name = "firstName"   (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.firstName">
             </div>
             <div class="form-group">
-              <label for="last-name" class="col-form-label">LastName<span style="color:red">*</span>:</label> 
-              <input type="text" class="form-control" id="last-name" name = "lastname" placeholder = "last name" (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.lastName">
+              <label for="last-name" class="col-form-label">Last Name<span style="color:red">*</span></label> 
+              <input type="text" class="form-control" id="last-name" name = "lastname"  (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.lastName">
             </div>
             <div class="form-group">
-                <label for="genderSelection">Gender<span style="color:red">*</span>:</label> 
+                <label for="genderSelection">Gender<span style="color:red">*</span></label> 
                 <select class="form-control" id="genderSelection" name="gender" (change)="showHideSubmitButton()" [(ngModel)]="personalInfo.gender">
                     <option value="-1">Select</option>
                     <option value="Male">Male</option>
@@ -33,12 +34,12 @@
                   </select>
               </div>
               <div class="form-group">
-                <label for="last-name" class="col-form-label">Birthdate:</label> 
-                <input type="date" class="form-control" id="last-name" name = "birthdate" placeholder = "birthdate"  [(ngModel)]="personalInfo.birthdate">
+                <label for="last-name" class="col-form-label">Date of Birth<span style="color:red">*</span></label> 
+                <input type="date" class="form-control" id="last-name" name = "birthdate"  [(ngModel)]="personalInfo.birthdate">
               </div>
               <div class="form-group">
-                <label for="last-name" class="col-form-label">Address:</label>
-                <input type="text" class="form-control" id="last-name" name = "address" placeholder = "address"  [(ngModel)]="personalInfo.address">
+                <label for="last-name" class="col-form-label">Address</label>
+                <input type="text" class="form-control" id="last-name" name = "address"   [(ngModel)]="personalInfo.address">
               </div>
           </form>
         </div>
@@ -54,19 +55,18 @@
   <!---Table code starts here-->
   <div *ngIf="personalInfoOfEmployees && personalInfoOfEmployees.length!==0">
   <table class="personal">
-    <thead>Personal Information</thead>
     <tr>
-        <th>FirstName</th>
-        <th>LastName</th>
+        <th>Firs tName</th>
+        <th>Last Name</th>
         <th>Gender</th>
-        <th>Birthdate</th>
+        <th>Date Of Birth</th>
         <th>Address</th>
       </tr>
    <tr *ngFor="let record of personalInfoOfEmployees">
         <td>{{record.firstName | titlecase }}</td>
         <td>{{record.lastName | titlecase}}</td>
         <td>{{record.gender}}</td>
-        <td>{{record.birthdate | date : 'M MMMM yyyy'}}</td>
+        <td>{{record.birthdate | date : 'dd MMMM yyyy'}}</td>
         <td>{{record.address}}</td>
     </tr>
 </table>
