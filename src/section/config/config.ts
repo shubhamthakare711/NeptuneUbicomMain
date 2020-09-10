@@ -22,3 +22,10 @@ export const PAGE =
     PERSONALSECTION : 'PersonalSection',
     PROFESSIONALSECTION : 'ProfessionalSection'
 }
+
+export const ROUTES = 
+{
+    SECTION: 'section',
+    PERSONALSECTION: 'personal',
+    PROFESSIONALSECTION: 'professional'
+}
