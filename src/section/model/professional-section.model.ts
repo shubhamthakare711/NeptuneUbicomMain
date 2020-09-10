@@ -3,7 +3,7 @@ export interface IProfessionalSection {
     employeeName: string;
     gender: string;
     joiningDate: Date;  
-    salary: number;
+    experience: number;
 }
 
 export class ProfessionalSectionModel implements IProfessionalSection {
@@ -11,5 +11,5 @@ export class ProfessionalSectionModel implements IProfessionalSection {
     employeeName = '';
     gender =  '-1';
     joiningDate = null; 
-    salary = null;
+    experience = null;
 }

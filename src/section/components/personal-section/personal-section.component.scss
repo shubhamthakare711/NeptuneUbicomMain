@@ -6,7 +6,26 @@ h2 {
     background-color: #fff;
     color: #777;
 }
+.page-title {
+    color: #ffffff;
+    text-transform: uppercase;
+    padding-top: 25px;
+    backface-visibility: hidden;
+    font-weight: 850;
+    font-weight: 35px;
+    text-align: center;
+}
 
+
+.personalinfo-btn {
+    display: inline-block;
+    text-transform: uppercase;
+    border-radius: 100px; 
+    margin-top: 55px;
+    margin-right: 25px;
+    position: relative;
+    margin-bottom: 12px;
+}
 .modal.show {
     display: block;
     z-index: 1040;
@@ -15,14 +34,16 @@ h2 {
 
 .personal {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    color: white;
     border-collapse: collapse;
-    width: 100%; 
+    width: 95%; 
     margin: 10px;
+
 }
 
 .personal td, .personal th {
-    border: 1px solid #ddd;
-    padding: 18px;
+    border: 2px solid rgba(236, 230, 230, 0.979);
+    padding: 12px;
   }
 
   input[type=number]::-webkit-inner-spin-button, 

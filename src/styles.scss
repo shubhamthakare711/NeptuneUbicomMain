@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+$fa-font-path: "../node_modules/font-awesome/fonts";
 
 *{
     margin: 0;
@@ -13,7 +14,7 @@ font-weight: 400;
 font-size: 16px;
 line-height: 1.7;
 color: #777;
-padding: 20px;
+padding: 10px;
 }
 
 .header {
@@ -133,7 +134,6 @@ text-transform: uppercase;
 text-decoration: none;
 display: inline-block;
 border-radius: 100px;
- // transition: all .8s;
 position: relative;
 }
 
@@ -178,4 +178,13 @@ box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 .disable {
     pointer-events: none;
     opacity: 0.5
+}
+
+.back-btn {
+    display: inline-block;
+    text-transform: uppercase;
+    border-radius: 100px; 
+    margin-top: 55px;
+    margin-left: 35px;
+    margin-bottom: 12px;
 }
