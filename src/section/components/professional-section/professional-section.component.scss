@@ -1,0 +1,35 @@
+h2 {
+    text-transform: uppercase;
+    text-align: center;
+    top: 45px;
+}
+
+.btn-info {
+    margin-right: 15px;
+    background-color: #fff;
+    color: #777;
+}
+
+.modal.show {
+    display: block;
+    z-index: 1040;
+    position: absolute;
+}
+
+.professional {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%; 
+    margin: 10px;
+}
+
+.professional td, .professional th {
+    border: 1px solid #ddd;
+    padding: 18px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -1,0 +1,32 @@
+h2 {
+    text-transform: uppercase;
+}
+.btn-info {
+    margin-right: 45px;
+    background-color: #fff;
+    color: #777;
+}
+
+.modal.show {
+    display: block;
+    z-index: 1040;
+    position: absolute;
+}
+
+.personal {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%; 
+    margin: 10px;
+}
+
+.personal td, .personal th {
+    border: 1px solid #ddd;
+    padding: 18px;
+  }
+
+  input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

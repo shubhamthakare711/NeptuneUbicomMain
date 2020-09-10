@@ -1,0 +1,75 @@
+<div class="header">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#personalSectionModal" data-whatever="@mdo"
+(click)="openModal()">Add Personal Information</button>
+  
+  <!-- The Modal -->
+  <div class="modal fade" id="personalSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  [ngClass]="isShowPersonalModal ? 'show' : ''">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Enter Personal Information</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModel()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="first-name" class="col-form-label">FirstName<span style="color:red">*</span></label>
+              <input type="text" class="form-control" id="first-name" name = "firstName" placeholder = "first name"  (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.firstName">
+            </div>
+            <div class="form-group">
+              <label for="last-name" class="col-form-label">LastName<span style="color:red">*</span>:</label> 
+              <input type="text" class="form-control" id="last-name" name = "lastname" placeholder = "last name" (keyup)="showHideSubmitButton()" [(ngModel)]="personalInfo.lastName">
+            </div>
+            <div class="form-group">
+                <label for="genderSelection">Gender<span style="color:red">*</span>:</label> 
+                <select class="form-control" id="genderSelection" name="gender" (change)="showHideSubmitButton()" [(ngModel)]="personalInfo.gender">
+                    <option value="-1">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Transgender">Transgender</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="last-name" class="col-form-label">Birthdate:</label> 
+                <input type="date" class="form-control" id="last-name" name = "birthdate" placeholder = "birthdate"  [(ngModel)]="personalInfo.birthdate">
+              </div>
+              <div class="form-group">
+                <label for="last-name" class="col-form-label">Address:</label>
+                <input type="text" class="form-control" id="last-name" name = "address" placeholder = "address"  [(ngModel)]="personalInfo.address">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearFields()">Clear</button>
+          <button type="button" class="btn btn-primary" [ngClass]="isShowSubmitButton ? '' : 'disable'" (click)="submit()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal code Ends here-->
+
+  <!---Table code starts here-->
+  <div *ngIf="personalInfoOfEmployees && personalInfoOfEmployees.length!==0">
+  <table class="personal">
+    <thead>Personal Information</thead>
+    <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Gender</th>
+        <th>Birthdate</th>
+        <th>Address</th>
+      </tr>
+   <tr *ngFor="let record of personalInfoOfEmployees">
+        <td>{{record.firstName | titlecase }}</td>
+        <td>{{record.lastName | titlecase}}</td>
+        <td>{{record.gender}}</td>
+        <td>{{record.birthdate | date : 'M MMMM yyyy'}}</td>
+        <td>{{record.address}}</td>
+    </tr>
+</table>
+</div>
+  <!---Table code ends here-->
+</div>

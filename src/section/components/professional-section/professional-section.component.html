@@ -1,0 +1,78 @@
+<div class="header">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#professionalSectionModal" data-whatever="@mdo"
+    (click)="openModal()">Add Professional Information</button>
+      
+      <!-- The Modal -->
+      <div class="modal fade" id="professionalSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+      [ngClass]="isShowProfessionalModal ? 'show' : ''">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter Professional Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModel()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="employee-Id" class="col-form-label">Employee Id<span style="color:red">*</span>:</label>
+                  <input type="number" class="form-control" id="employee-Id" name = "employeeID" placeholder = "Employee Id" 
+                  (keyup)="showHideSubmitButton()" [(ngModel)]="professionalInfoModel.employeeId">
+                </div>
+                <div class="form-group">
+                  <label for="employee-name" class="col-form-label">Employee Name<span style="color:red">*</span>:</label>
+                  <input type="text" class="form-control" id="employee-name" name = "employeeName" placeholder = "Employee Name"
+                  (keyup)="showHideSubmitButton()"  [(ngModel)]="professionalInfoModel.employeeName">
+                </div>
+                <div class="form-group">
+                    <label for="genderSelection">Gender<span style="color:red">*</span>:</label>
+                    <select class="form-control" id="genderSelection" name="gender" (change)="showHideSubmitButton()" [(ngModel)]="professionalInfoModel.gender">
+                        <option value="-1">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Transgender">Transgender</option>
+                      </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="joining-date" class="col-form-label"> Date Of Joining<span style="color:red">*</span>:</label>
+                    <input type="date" class="form-control" id="joining-date" name = "joiningDate" (change)="showHideSubmitButton()" placeholder = "joiningDate" [(ngModel)]="professionalInfoModel.joiningDate">
+                  </div>
+                  <div class="form-group">
+                    <label for="salary" class="col-form-label">Salary:</label>
+                    <input type="number" class="form-control" id="salary" name = "salary" placeholder = "Salary" [(ngModel)]="professionalInfoModel.salary">
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearFields()">Clear</button>
+              <button type="button" class="btn btn-primary" [ngClass]="isShowSubmitButton ? '' : 'disable'" (click)="submitProfessionalInfo()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Modal code Ends here-->
+    
+      <!---Table code starts here-->
+      <div *ngIf="professionalInfoOfEmployees && professionalInfoOfEmployees.length!==0">
+      <table class="professional">
+        <thead>Personal Information</thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Gender</th>
+            <th>Date of Joining</th>
+            <th>Salary</th>
+          </tr>
+       <tr *ngFor="let record of professionalInfoOfEmployees">
+            <td>{{record.employeeId }}</td>
+            <td>{{record.employeeName | titlecase}}</td>
+            <td>{{record.gender}}</td>
+            <td>{{record.joiningDate | date : 'M MMMM yyyy'}}</td>
+            <td>{{record.salary}}</td>
+            
+        </tr>
+    </table>
+    </div>
+      <!---Table code ends here-->
+    </div>
