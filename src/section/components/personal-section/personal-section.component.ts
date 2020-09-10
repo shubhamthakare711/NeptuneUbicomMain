@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
- // import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { PersonalSectionModel } from 'src/section/model/personal-section.model';
+import { GENDERS , LOCALSTORAGEKEYS } from '../../config/config'
 import * as _ from 'lodash';
 @Component({
   selector: 'app-personal-section',
@@ -9,20 +9,26 @@ import * as _ from 'lodash';
 })
 export class PersonalSectionComponent implements OnInit {
   isShowPersonalModal: boolean;
-  isShowSubmitButton: boolean;
+  isDisableSubmitButton: boolean;
   personalInfo: PersonalSectionModel;
+  genderArray = GENDERS;
   personalInfoOfEmployees : PersonalSectionModel[] = [];
   constructor() { 
     this.isShowPersonalModal= false;
-    this.isShowSubmitButton = false;
+    this.isDisableSubmitButton = false;
     this.personalInfo = new PersonalSectionModel();
     this.personalInfoOfEmployees = new Array<PersonalSectionModel>();
   }
 
   ngOnInit(): void {
+    this.readDataFromLocalStorage();
   }
 
 
+  readDataFromLocalStorage() {
+    let dataFromLocalStorage = JSON.parse(localStorage.getItem(LOCALSTORAGEKEYS.PERSONAL));
+    this.personalInfoOfEmployees = dataFromLocalStorage !== null ? dataFromLocalStorage : [];
+  }
   /**
    * method to open bootstrap modal
    */
@@ -31,7 +37,7 @@ export class PersonalSectionComponent implements OnInit {
   }
   clearFields() {
     this.personalInfo = new PersonalSectionModel();
-    this.isShowSubmitButton = false;
+    this.isDisableSubmitButton = false;
   }
 
   closeModel() {
@@ -41,19 +47,20 @@ export class PersonalSectionComponent implements OnInit {
   
   showHideSubmitButton() {
     if(this.personalInfo.firstName.length !== 0 && this.personalInfo.lastName.length !== 0 && this.personalInfo.gender !== "-1" && this.personalInfo.birthdate !== null ) {
-      this.isShowSubmitButton = true;
+      this.isDisableSubmitButton = true;
     } else {
-      this.isShowSubmitButton = false;
+      this.isDisableSubmitButton = false;
     }
   }
  
   submit() {
-    if(!_.isEmpty(this.personalInfo) && this.isShowSubmitButton) {
+    if(!_.isEmpty(this.personalInfo) && this.isDisableSubmitButton) {
       this.personalInfoOfEmployees.push(this.personalInfo);
+      localStorage.setItem(LOCALSTORAGEKEYS.PERSONAL, JSON.stringify(this.personalInfoOfEmployees));
       this.isShowPersonalModal = false;
       this.clearFields();
     } else {
-      this.isShowSubmitButton = false;
+      this.isDisableSubmitButton = false;
     }
    
   }

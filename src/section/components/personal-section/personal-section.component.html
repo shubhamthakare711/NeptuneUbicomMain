@@ -26,16 +26,14 @@
             </div>
             <div class="form-group">
                 <label for="genderSelection">Gender<span style="color:red">*</span></label> 
-                <select class="form-control" id="genderSelection" name="gender" (change)="showHideSubmitButton()" [(ngModel)]="personalInfo.gender">
-                    <option value="-1">Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Transgender">Transgender</option>
+                <select class="form-control" id="genderSelection" name="gender"  (change)="showHideSubmitButton()" [(ngModel)]="personalInfo.gender">
+                  <option value="-1">Select</option>
+                  <option *ngFor="let gender of genderArray" [value]=gender.value>{{gender.displayName}}</option>
                   </select>
               </div>
               <div class="form-group">
                 <label for="last-name" class="col-form-label">Date of Birth<span style="color:red">*</span></label> 
-                <input type="date" class="form-control" id="last-name" name = "birthdate"  [(ngModel)]="personalInfo.birthdate">
+                <input type="date" class="form-control" id="last-name" name = "birthdate"  (change)="showHideSubmitButton()" [(ngModel)]="personalInfo.birthdate">
               </div>
               <div class="form-group">
                 <label for="last-name" class="col-form-label">Address</label>
@@ -45,7 +43,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clearFields()">Clear</button>
-          <button type="button" class="btn btn-primary" [ngClass]="isShowSubmitButton ? '' : 'disable'" (click)="submit()">Submit</button>
+          <button type="button" class="btn btn-primary" [ngClass]="isDisableSubmitButton ? '' : 'disable'" (click)="submit()">Submit</button>
         </div>
       </div>
     </div>
@@ -56,7 +54,7 @@
   <div *ngIf="personalInfoOfEmployees && personalInfoOfEmployees.length!==0">
   <table class="personal">
     <tr>
-        <th>Firs tName</th>
+        <th>First Name</th>
         <th>Last Name</th>
         <th>Gender</th>
         <th>Date Of Birth</th>
